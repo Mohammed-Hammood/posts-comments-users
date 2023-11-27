@@ -11,14 +11,16 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
     title: 'Posts',
     description: 'Posts application',
+    icons: {
+        icon: '/favicon.png'
+    }
 }
 
 export default function RootLayout({ children}: { children: React.ReactNode}) {
     return (
         <html lang="en">
             <Head>
-                <title>Posts</title>
-                <link rel="icon" href="/favicon.svg" type='image/x-icon' />
+                <link rel="icon" href="/favicon.png" type='image/x-icon' sizes={'16'}/>
             </Head>
             <body className={inter.className}>
                 <StateProvider>
