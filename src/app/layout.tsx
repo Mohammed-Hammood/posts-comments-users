@@ -18,7 +18,7 @@ export default function RootLayout({ children}: { children: React.ReactNode}) {
         <html lang="en">
             <Head>
                 <title>Posts</title>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.svg" type='image/x-icon' />
             </Head>
             <body className={inter.className}>
                 <StateProvider>
