@@ -1,0 +1,19 @@
+.comment {
+    background: var(--white);
+    color: var(--black);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+
+    svg {
+      height: 14px;
+    }
+  }
+
+  .name, .email {
+    display: flex;
+    align-items: center;
+    gap:5px;
+  }

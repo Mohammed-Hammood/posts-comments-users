@@ -1,95 +1,58 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client"
+import React from 'react';
+import ReactPaginate from 'react-paginate';
+import { PostCard, Loader } from '@/components';
+import styles from '@/styles/Home.module.scss';
+import { selectPosts, setFilters, setPosts, clearPosts, useAppDispatch, useAppSelector } from '@/store';
+import { useFetch } from '@/hooks';
+import { Endpoints } from '@/utils';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+export default function HomePage() {
+    const { posts, posts_count, filters, loading } = useAppSelector(selectPosts)
+    const dispatch = useAppDispatch();
+    const url = Endpoints.posts(filters);
+    const { page, limit } = filters;
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    const { setUrl } = useFetch({
+        reducer: setPosts,
+        url: posts_count === 0 ? url : null
+    })
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+    const pageChangeHandler = (value: number): void => {
+        if (value !== page) {
+            dispatch(clearPosts());
+            dispatch(setFilters({ ...filters, page: value }));
+            setUrl(Endpoints.posts({ ...filters, page: value }));
+        }
+    }
+    return (
+        <main className={styles.container}>
+            <div className={styles.centerWrapper}>
+                <div className={styles.postsWrapper}>
+                    {loading
+                        ? <Loader size={10} />
+                        : posts.map(post => (
+                            <PostCard
+                                post={post}
+                                key={post.id}
+                            />
+                        ))}
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+                </div>
+                {posts_count > limit &&
+                    <ReactPaginate
+                        pageCount={posts_count / limit}
+                        marginPagesDisplayed={1}
+                        pageRangeDisplayed={5}
+                        onPageChange={({ selected }: { selected: number }) => pageChangeHandler(selected + 1)}
+                        containerClassName={styles.pagination}
+                        activeClassName={styles.active}
+                        initialPage={page - 1}
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+                    />}
+            </div>
+        </main>
+    );
+
 }

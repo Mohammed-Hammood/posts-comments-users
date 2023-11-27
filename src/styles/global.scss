@@ -1,0 +1,52 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    background: transparent;
+    font-family: inherit;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+
+main {
+    margin-top: 50px;
+}
+
+body {
+    min-height: 100vw;
+    color: var(--black);
+    background: linear-gradient(to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        Segoe UI,
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        Fira Sans,
+        Droid Sans,
+        Helvetica Neue,
+        sans-serif;
+}
+
+
+img,
+picture {
+    max-width: 100%;
+    height: auto;
+}
+
+button, input, textarea, select {
+    border:1px solid var(--border-color);
+    background-color: var(--main-color);
+    padding:1px;
+}
