@@ -1,3 +1,9 @@
+# The application is deployed on [Link](https://posts-comments-users.vercel.app)
+
+## Stack:
+- Nextjs, TypeScript, JavaScript, React, Redux/toolkit, react-toastify, Sass, react-paginate
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
