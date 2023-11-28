@@ -34,7 +34,7 @@ export function Portal({ children, id, className }: Props): JSX.Element | null {
             setContainer(null);
         }
 
-    }, [id]);
+    }, [id, className]);
 
     return container ? createPortal(children, container) : null;
 }

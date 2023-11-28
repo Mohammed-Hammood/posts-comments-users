@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 
 export function Header() {
-    const { filters, posts_count } = useAppSelector(selectPosts)
+    const { filters } = useAppSelector(selectPosts)
     const dispatch = useAppDispatch();
     const { register, handleSubmit, reset, watch } = useForm();
     const { setUrl } = useFetch({ reducer: setPosts })
