@@ -29,10 +29,11 @@
 .details, .title {
     height: 1rem;
     background: silver;
+    width:30%;
     border-radius: 5px;
     animation: BG_Loader 2s ease-in-out infinite;
 }
 .details {
-    width:30%;
+    width:90%;
     animation: BG_Loader 2s ease-in-out infinite 0.2s;
 }
