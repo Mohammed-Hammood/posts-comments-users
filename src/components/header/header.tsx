@@ -18,7 +18,7 @@ export function Header() {
     const router = useRouter();
 
     const onSubmit = (text: string) => {
-        if (text.trim().length > 0 || (text.length === 0 && posts_count === 0)) {
+        if (text.trim().length > 0) {
             const updatedFilters = { ...filters, query: text.trim(), page: 1 }
             dispatch(clearPosts());
             dispatch(setFilters(updatedFilters));
@@ -37,14 +37,15 @@ export function Header() {
     return (<header className={style.header}>
         <nav className={style.nav}>
             <Link href={"/"} className={style.home}>
-                <ICON name='home' color='#000' height='14px' />
+                <ICON name='home-solid' color='#000' height='14px' />
             </Link>
             <form
                 className={style.form}
                 onSubmit={handleSubmit(({ text }) => onSubmit(text.trim()))}
             >
-                {watch("text") &&
+                {(watch("text") || filters.query.length > 0) &&
                     <button
+                        title='Reset search'
                         onClick={() => resetPosts()}
                         className={style.clearBtn}
                         type="button">

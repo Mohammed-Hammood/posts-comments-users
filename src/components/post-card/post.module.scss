@@ -17,9 +17,9 @@
     gap: 5px;
     align-items: center;
 
-    &:hover {
+    a:hover {
         text-decoration: underline;
-        color: var(--black);
+        color: var(--main-color);
     }
 }
 
@@ -28,4 +28,7 @@
     height: 30px;
     border-radius: 50%;
     object-fit: contain;
+    &:hover {
+        box-shadow: 0 0 10px var(--main-color);
+    }
 }

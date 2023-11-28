@@ -1,6 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "@/store";
-import { HYDRATE } from "next-redux-wrapper";
 
  
 export interface PostsState {
@@ -28,7 +26,6 @@ export const postsSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
-        // Action to set the authentication status
         setPosts(state, action:PayloadAction<{posts:Post[], posts_count:number}>) {
             state.posts = action.payload.posts;
             state.posts_count = action.payload.posts_count;
@@ -46,19 +43,9 @@ export const postsSlice = createSlice({
         }
     },
 
-    // Special reducer for hydrating the state. Special case for next-redux-wrapper
-    extraReducers: {
-        [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                ...action.payload.posts,
-            };
-        },
-    },
 });
 
 export const { setPosts, setFilters, resetFilters, clearPosts } = postsSlice.actions;
 
-export const selectPosts = (state: RootState) => state.posts;
 
 export default postsSlice.reducer;

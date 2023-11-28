@@ -44,7 +44,7 @@ export function useFetch(props: Props) {
             setLoading(true);
             sendRequest(url);
         }
-    }, [url, loading, setUrl, setLoading, props])
+    }, [url, loading, setUrl, setLoading, props, dispatch])
     return {
         loading,
         url,

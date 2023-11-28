@@ -1,9 +1,9 @@
 
 type Post = {
-    id:number;
-    userId:number;
-    title:string;
-    body:string;
+    id: number;
+    userId: number;
+    title: string;
+    body: string;
 }
 
 
@@ -19,7 +19,30 @@ type Filters = {
     order: "id" | "-id";
     query: string;
     page: number;
-    limit:number;
+    limit: number;
 }
 
-type MethodTypes = "GET"
+type User = {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    address: {
+        street: string;
+        suite: string;
+        city: string;
+        zipcode: string;
+        string;
+        geo: {
+            lat: string;
+            lng: string;
+        }
+    },
+    phone: string;
+    website: string;
+    company: {
+        name: string;
+        catchPhrase: string;
+        bs: string;
+    }
+}
