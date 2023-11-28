@@ -30,7 +30,7 @@ export function Modal({ isVisible, onClose, userId }: Props) {
             setUser(users.find(item => item.id === userId));
         }
     }, [userId, setUser, user, users, users_count])
-   
+
     return (
         isVisible &&
         <Portal id={modalId} className={styles.container}>
@@ -47,11 +47,15 @@ export function Modal({ isVisible, onClose, userId }: Props) {
                             <div className={styles.title}>Name</div>
                             <div className={styles.value}>{user.name}</div>
                             <div className={styles.title}>Email</div>
-                            <div className={styles.value}>{user.email}</div>
+                            <div className={styles.value}>
+                                <a className={styles.value} href={`mailto:${user.email}`}>{user.email}</a>
+                            </div>
                             <div className={styles.title}>Username</div>
                             <div className={styles.value}>{user.username}</div>
                             <div className={styles.title}>Website</div>
-                            <div className={styles.value}>{user.website}</div>
+                            <div className={styles.value}>
+                                <a href={`https://${user.website}`} target='__blank'>{user.website}</a>
+                            </div>
                             <div className={styles.title}>Company</div>
                             <div className={styles.value}>{user.company.name}</div>
                         </>
