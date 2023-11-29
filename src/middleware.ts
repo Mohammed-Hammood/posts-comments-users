@@ -5,6 +5,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   "http://localhost:3000",
   'http://localhost:5173',
+  'https://feedback-form2.vercel.app',
 ];
 
 export function middleware(req:NextRequest) {
