@@ -28,7 +28,7 @@
 
 .details, .title {
     height: 1rem;
-    background: silver;
+    background: var(--silver);
     width:30%;
     border-radius: 5px;
     animation: BG_Loader 2s ease-in-out infinite;

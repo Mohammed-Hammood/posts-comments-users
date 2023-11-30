@@ -5,11 +5,12 @@ import { toast } from "react-toastify"
 
 interface Props {
     url?: string | null;
-    reducer: (data: any) => any;
+    reducer?: (data: any) => any;
+    setData?: (data: any) => void;
 }
 
-export function useFetch(props: Props) {
-    const [url, setUrl] = useState<string | null | undefined>(props.url);
+export function useFetch({ url: url_, reducer, setData }: Props) {
+    const [url, setUrl] = useState<string | null | undefined>(url_);
     const [loading, setLoading] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
@@ -20,13 +21,20 @@ export function useFetch(props: Props) {
                 const req = await fetch(url);
                 const res = await req.json();
                 if (res && res.ok) {
-                    dispatch(props.reducer(res))
-                }else {
-                    throw (res.message)
+
+                    reducer && dispatch(reducer(res));
+
+                    setData && setData(res);
+                }
+                else {
+                    throw res.message;
                 }
 
             } catch (err: any) {
-                toast.error(err, {
+                
+                const text:string = typeof err === 'string' ? err : (err.statusText || "Something went wrong");
+
+                toast.error(text, {
                     position: "top-center",
                     closeOnClick: true,
                     theme: "colored",
@@ -44,7 +52,7 @@ export function useFetch(props: Props) {
             setLoading(true);
             sendRequest(url);
         }
-    }, [url, loading, setUrl, setLoading, props, dispatch])
+    }, [url, loading, setUrl, setLoading, dispatch, setData, reducer])
     return {
         loading,
         url,

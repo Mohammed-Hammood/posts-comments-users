@@ -1,4 +1,4 @@
-import { ICON } from "../icons";
+import { ICON } from "@/components";
 import styles from "./comment.module.scss";
 
 

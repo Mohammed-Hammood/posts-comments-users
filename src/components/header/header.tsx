@@ -3,10 +3,9 @@ import React from 'react';
 import style from './header.module.scss';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
-import { ICON } from '@/components';
 import { Endpoints } from '@/utils';
+import { useFetch, ICON } from '@/components';
 import { clearPosts, selectPosts, setFilters, setPosts, useAppDispatch, useAppSelector } from '@/store';
-import { useFetch } from '@/hooks';
 import { useRouter } from 'next/navigation';
 
 
@@ -20,10 +19,10 @@ export function Header() {
     const onSubmit = (text: string) => {
         if (text.trim().length > 0) {
             const updatedFilters = { ...filters, query: text.trim(), page: 1 }
-            dispatch(clearPosts());
+            dispatch(clearPosts()); // clear posts and set Loading to True
             dispatch(setFilters(updatedFilters));
             setUrl(Endpoints.posts(updatedFilters));
-            router.replace("/");
+            router.replace("/"); //go to home page case of the current page is post detail
         }
     }
     const resetPosts = () => {

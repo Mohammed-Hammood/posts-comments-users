@@ -1,9 +1,8 @@
 "use client";
 import { useEffect, useId, useState } from 'react';
-import { Loader, ICON, Portal } from '@/components';
+import { useFetch, Loader, ICON, Portal } from '@/components';
 import styles from "./modal.module.scss";
 import { useAppSelector, selectUsers, setUsers } from '@/store';
-import { useFetch } from '@/hooks';
 import { Endpoints } from '@/utils';
 
 interface Props {

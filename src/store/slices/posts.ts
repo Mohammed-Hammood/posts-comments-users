@@ -7,7 +7,6 @@ export interface PostsState {
     filters: Filters;
     loading: boolean;
 }
-
  
 const initialState: PostsState = {
     posts: [],
@@ -20,7 +19,6 @@ const initialState: PostsState = {
         query:""
     }
 };
-
  
 export const postsSlice = createSlice({
     name: "posts",
