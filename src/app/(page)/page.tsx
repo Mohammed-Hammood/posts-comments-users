@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { useFetch, PostCard, Loader, Modal, Pagination } from '@/components';
-import styles from '@/styles/home.module.scss';
+import styles from './home.module.scss';
 import { selectPosts, setFilters, setPosts, clearPosts, useAppDispatch, useAppSelector } from '@/store';
 import { Endpoints } from '@/utils';
 
